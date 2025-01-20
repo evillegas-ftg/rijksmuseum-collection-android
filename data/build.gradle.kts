@@ -14,6 +14,8 @@ android {
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
+
+        buildConfigField("String", "BASE_URL", "\"https://www.rijksmuseum.nl/api/en/\"")
     }
 
     buildTypes {
@@ -32,6 +34,10 @@ android {
     kotlinOptions {
         jvmTarget = "11"
     }
+
+    buildFeatures {
+        buildConfig = true
+    }
 }
 
 dependencies {
@@ -40,6 +46,9 @@ dependencies {
     // Hilt
     ksp(libs.hilt.android.compiler)
     implementation(libs.hilt.android)
+
+    // Networking
+    implementation(libs.retrofit)
 
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
