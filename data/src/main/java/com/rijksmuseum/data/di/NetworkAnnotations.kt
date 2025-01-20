@@ -8,4 +8,8 @@ annotation class NetworkBaseUrl
 
 @Qualifier
 @Retention(AnnotationRetention.BINARY)
+annotation class JSONConverter
+
+@Qualifier
+@Retention(AnnotationRetention.BINARY)
 annotation class ApiAuthKey
