@@ -16,6 +16,7 @@ android {
         consumerProguardFiles("consumer-rules.pro")
 
         buildConfigField("String", "BASE_URL", "\"https://www.rijksmuseum.nl/api/en/\"")
+        buildConfigField("String", "API_KEY", "\"0fiuZFh4\"")
     }
 
     buildTypes {

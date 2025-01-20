@@ -1,6 +1,7 @@
 package com.rijksmuseum.data.di
 
 import com.rijksmuseum.data.BuildConfig
+import com.rijksmuseum.data.util.interceptor.ApiKeyInterceptor
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -20,10 +21,28 @@ object NetworkModule {
         return BuildConfig.BASE_URL
     }
 
+    @Provides
+    @Singleton
+    @ApiAuthKey
+    fun provideApiAuthKey(): String {
+        return BuildConfig.API_KEY
+    }
+
+    @Provides
+    @Singleton
+    fun provideApiKeyInterceptor(
+        @ApiAuthKey key: String,
+    ) : ApiKeyInterceptor {
+        return ApiKeyInterceptor(key)
+    }
+
     @Singleton
     @Provides
-    fun provideOkHttpClient() : OkHttpClient {
+    fun provideOkHttpClient(
+        apiKeyInterceptor: ApiKeyInterceptor,
+    ) : OkHttpClient {
         return OkHttpClient.Builder()
+            .addInterceptor(apiKeyInterceptor)
             .build()
     }
 
