@@ -8,14 +8,13 @@ import retrofit2.http.Query
 interface RemoteDataSource {
 
     companion object {
-        private const val COLLECTION_DEFAULT_PAGE_SIZE = 50
         private const val COLLECTION_DEFAULT_SORT = "artist"
     }
 
     @GET("collection")
     suspend fun getCollection(
-        @Query("ps") pageSize: Int = COLLECTION_DEFAULT_PAGE_SIZE,
         @Query("s") sort: String = COLLECTION_DEFAULT_SORT,
         @Query("p") @IntRange(from = 0) page: Int,
+        @Query("ps") @IntRange(from = 1, to = 100) pageSize: Int,
     ): CollectionResponse
 }
