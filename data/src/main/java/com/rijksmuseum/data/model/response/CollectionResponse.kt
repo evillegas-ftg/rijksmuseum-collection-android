@@ -11,6 +11,7 @@ data class CollectionResponse(
 
 @Serializable
 data class ArtObjectResponse(
+    @SerialName("id") val id: String,
     @SerialName("objectNumber") val objectNumber: String,
     @SerialName("title") val title: String,
     @SerialName("principalOrFirstMaker") val principalOrFirstMaker: String,
@@ -20,5 +21,5 @@ data class ArtObjectResponse(
 @Serializable
 data class WebImageResponse(
     @SerialName("guid") val guid: String?,
-    @SerialName("url") val url: String,
+    @SerialName("url") val url: String?,
 )
