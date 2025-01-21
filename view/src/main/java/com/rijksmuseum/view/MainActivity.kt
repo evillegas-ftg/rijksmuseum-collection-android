@@ -11,6 +11,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.rijksmuseum.view.navigation.RijksmuseumNavHost
 import com.rijksmuseum.view.screen.CollectionScreen
 import com.rijksmuseum.view.ui.theme.RijksmuseumAndroidTheme
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,7 +24,9 @@ class MainActivity : ComponentActivity() {
         setContent {
             RijksmuseumAndroidTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    CollectionScreen(modifier = Modifier.padding(innerPadding))
+                    RijksmuseumNavHost(
+                        modifier = Modifier.padding(innerPadding)
+                    )
                 }
             }
         }
