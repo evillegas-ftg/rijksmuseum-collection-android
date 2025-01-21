@@ -60,13 +60,13 @@ class ArtDetailsViewModel @Inject constructor(
 
 sealed class ArtDetailsState {
 
-    data object Loading: ArtDetailsState()
+    data object Loading : ArtDetailsState()
 
     data class Error(
         val reason: String
-    ): ArtDetailsState()
+    ) : ArtDetailsState()
 
     data class Loaded(
         val data: ArtDetailViewData
-    ): ArtDetailsState()
+    ) : ArtDetailsState()
 }

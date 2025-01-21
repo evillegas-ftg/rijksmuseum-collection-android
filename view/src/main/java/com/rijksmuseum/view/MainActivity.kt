@@ -8,12 +8,8 @@ import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import com.rijksmuseum.view.navigation.RijksmuseumNavHost
-import com.rijksmuseum.view.screen.CollectionScreen
 import com.rijksmuseum.view.ui.theme.RijksmuseumAndroidTheme
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -26,7 +22,8 @@ class MainActivity : ComponentActivity() {
             RijksmuseumAndroidTheme {
                 Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
                     RijksmuseumNavHost(
-                        modifier = Modifier.padding(innerPadding)
+                        modifier = Modifier
+                            .padding(innerPadding)
                             .consumeWindowInsets(innerPadding)
                     )
                 }

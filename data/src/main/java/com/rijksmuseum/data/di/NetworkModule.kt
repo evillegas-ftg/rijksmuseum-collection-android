@@ -37,7 +37,7 @@ object NetworkModule {
     @Singleton
     fun provideApiKeyInterceptor(
         @ApiAuthKey key: String,
-    ) : ApiKeyInterceptor {
+    ): ApiKeyInterceptor {
         return ApiKeyInterceptor(key)
     }
 
@@ -45,7 +45,7 @@ object NetworkModule {
     @Provides
     fun provideOkHttpClient(
         apiKeyInterceptor: ApiKeyInterceptor,
-    ) : OkHttpClient {
+    ): OkHttpClient {
         return OkHttpClient.Builder()
             .addInterceptor(apiKeyInterceptor)
             .build()

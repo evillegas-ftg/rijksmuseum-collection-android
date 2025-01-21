@@ -7,7 +7,7 @@ import javax.inject.Inject
 class GetArtDetailsUseCase @Inject constructor(
     private val artRepository: ArtRepository,
 ) {
-    suspend fun get(id: String) : Result<ArtDetailModel> {
+    suspend fun get(id: String): Result<ArtDetailModel> {
         return artRepository.getArtDetails(id)
     }
 }

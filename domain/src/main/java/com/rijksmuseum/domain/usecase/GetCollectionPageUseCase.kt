@@ -7,7 +7,7 @@ import javax.inject.Inject
 class GetCollectionPageUseCase @Inject constructor(
     private val artRepository: ArtRepository,
 ) {
-    suspend fun get(page: Int) : Result<PaginatedArtListModel> {
+    suspend fun get(page: Int): Result<PaginatedArtListModel> {
         return artRepository.getCollection(page)
     }
 }

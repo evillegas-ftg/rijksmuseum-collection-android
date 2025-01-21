@@ -23,5 +23,5 @@ interface RemoteDataSource {
     @GET("collection/{collection_id}")
     suspend fun getCollectionDetail(
         @Path("collection_id") id: String,
-    ) : CollectionDetailResponse
+    ): CollectionDetailResponse
 }

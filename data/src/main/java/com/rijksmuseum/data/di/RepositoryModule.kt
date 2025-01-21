@@ -17,7 +17,7 @@ object RepositoryModule {
     @Singleton
     fun provideArtRepository(
         remoteDataSource: RemoteDataSource
-    ) : ArtRepository {
+    ): ArtRepository {
         return ArtRepositoryImpl(
             remoteDataSource = remoteDataSource,
         )
