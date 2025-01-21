@@ -44,6 +44,7 @@ android {
 
 dependencies {
     implementation(project(":domain"))
+    testImplementation(libs.junit.jupiter)
 
     ksp(libs.hilt.android.compiler)
     implementation(libs.hilt.android)
@@ -53,6 +54,7 @@ dependencies {
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     testImplementation(libs.junit)
+    testImplementation(libs.kotlinx.coroutines.test)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 }
