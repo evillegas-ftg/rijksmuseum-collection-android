@@ -41,10 +41,8 @@ android {
 dependencies {
     implementation(project(":presentation"))
 
-    // Hilt
     ksp(libs.hilt.android.compiler)
     implementation(libs.hilt.android)
-
     implementation(libs.compose.coil)
     implementation(libs.compose.navigation)
     implementation(libs.androidx.hilt.navigation)

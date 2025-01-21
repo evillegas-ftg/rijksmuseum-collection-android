@@ -37,13 +37,9 @@ android {
 dependencies {
     implementation(project(":domain"))
 
-    // Hilt
     ksp(libs.hilt.android.compiler)
     implementation(libs.hilt.android)
-
-    // Lifecycle
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     testImplementation(libs.junit)

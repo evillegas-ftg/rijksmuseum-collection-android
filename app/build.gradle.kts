@@ -44,10 +44,8 @@ dependencies {
     implementation(project(":domain"))
     implementation(project(":data"))
 
-    // Hilt
     ksp(libs.hilt.android.compiler)
     implementation(libs.hilt.android)
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     testImplementation(libs.junit)

@@ -45,16 +45,11 @@ android {
 dependencies {
     implementation(project(":domain"))
 
-    // Hilt
     ksp(libs.hilt.android.compiler)
     implementation(libs.hilt.android)
-
-    // Networking
     implementation(libs.retrofit)
     implementation(libs.retrofit.kotlinx.serialization.converter)
-    // JSON Serialization
     implementation(libs.kotlin.serialization.json)
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     testImplementation(libs.junit)

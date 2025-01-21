@@ -35,10 +35,8 @@ android {
 }
 
 dependencies {
-    // Hilt
     ksp(libs.hilt.android.compiler)
     implementation(libs.hilt.android)
-
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.appcompat)
     testImplementation(libs.junit)
