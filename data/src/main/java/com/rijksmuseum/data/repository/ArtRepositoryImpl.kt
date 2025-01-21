@@ -2,6 +2,7 @@ package com.rijksmuseum.data.repository
 
 import com.rijksmuseum.data.datasource.RemoteDataSource
 import com.rijksmuseum.data.mapper.toDomain
+import com.rijksmuseum.domain.model.ArtDetailModel
 import com.rijksmuseum.domain.model.PaginatedArtListModel
 import com.rijksmuseum.domain.repository.ArtRepository
 import kotlinx.coroutines.Dispatchers
@@ -33,6 +34,17 @@ class ArtRepositoryImpl(
                         nextPageIndex = page.inc(),
                     )
                 )
+            } catch (reason: Throwable) {
+                Result.failure(reason)
+            }
+        }
+    }
+
+    override suspend fun getArtDetails(id: String): Result<ArtDetailModel> {
+        return withContext(Dispatchers.IO) {
+            try {
+                val response = remoteDataSource.getCollectionDetail(id)
+                Result.success(response.artObject.toDomain())
             } catch (reason: Throwable) {
                 Result.failure(reason)
             }

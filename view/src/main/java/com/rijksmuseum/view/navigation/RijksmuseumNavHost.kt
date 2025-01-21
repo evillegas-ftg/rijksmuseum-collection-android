@@ -9,6 +9,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.rijksmuseum.view.screen.ArtDetailsScreen
 import com.rijksmuseum.view.screen.CollectionScreen
 
 @Composable
@@ -22,14 +23,20 @@ fun RijksmuseumNavHost(
         startDestination = AppRoute.Collections.route
     ) {
         composable(route = AppRoute.Collections.route) {
-            CollectionScreen()
+            CollectionScreen(
+                onNavigateToDetails = { id ->
+                    navController.navigateToDetails(id)
+                }
+            )
         }
 
         composable(
             route = AppRoute.ArtDetails.route,
             arguments = listOf(navArgument("id") { type = NavType.StringType })
         ) {
-            Text("Details")
+            ArtDetailsScreen(
+                onNavigateBack = { navController.navigateUp() }
+            )
         }
     }
 }

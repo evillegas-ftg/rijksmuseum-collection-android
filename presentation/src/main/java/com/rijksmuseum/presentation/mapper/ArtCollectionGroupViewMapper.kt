@@ -9,7 +9,7 @@ fun List<ArtObjectListModel>.toViewData(): List<ArtCollectionGroupViewData> {
 
     return fold(mutableListOf()) { acc, item ->
         val newItem = ArtCollectionItemViewData(
-            id = item.id,
+            id = item.objectNumber,
             title = item.title,
             image = item.image,
         )

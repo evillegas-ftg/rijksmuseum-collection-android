@@ -49,6 +49,7 @@ import com.rijksmuseum.view.ui.component.LoaderView
 
 @Composable
 fun CollectionScreen(
+    onNavigateToDetails: (String) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: CollectionViewModel = hiltViewModel(),
 ) {
@@ -59,6 +60,7 @@ fun CollectionScreen(
         uiState = uiState,
         onRetryClicked = viewModel::onRetryClicked,
         onMoreItemsRequested = viewModel::onMoreItemsRequested,
+        onArtClicked = onNavigateToDetails,
     )
 }
 
@@ -67,7 +69,8 @@ private fun CollectionScreenContent(
     uiState: CollectionState,
     modifier: Modifier = Modifier,
     onRetryClicked: () -> Unit,
-    onMoreItemsRequested: () -> Unit
+    onMoreItemsRequested: () -> Unit,
+    onArtClicked: (String) -> Unit,
 ) {
     Box(modifier = modifier.fillMaxSize()) {
         when {
@@ -87,6 +90,7 @@ private fun CollectionScreenContent(
                     data = uiState.data,
                     onMoreItemsRequested = onMoreItemsRequested,
                     onRetryClicked = onRetryClicked,
+                    onArtClicked = onArtClicked,
                 )
             }
         }
@@ -99,6 +103,7 @@ private fun CollectionListView(
     data: PaginatedArtObjectViewData,
     onMoreItemsRequested: () -> Unit,
     onRetryClicked: () -> Unit,
+    onArtClicked: (String) -> Unit,
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
@@ -120,7 +125,7 @@ private fun CollectionListView(
                 ArtistObjectView(
                     modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp),
                     data = item,
-                    onClick = {}
+                    onClick = onArtClicked,
                 )
             }
 
@@ -188,9 +193,11 @@ private fun ArtistObjectView(
                 .height(80.dp),
             image = data.image
         )
-        Column(modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp)) {
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp)
+        ) {
             Text(
                 modifier = Modifier.fillMaxWidth(),
                 text = data.title,
@@ -237,7 +244,6 @@ private fun ObjectImageView(
                         textAlign = TextAlign.Center,
                     )
                 }
-
             }
 
             is AsyncImagePainter.State.Loading -> {
@@ -264,7 +270,8 @@ private fun LoadingMoreContentView(
     modifier: Modifier = Modifier,
 ) {
     Row(
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier
+            .fillMaxWidth()
             .padding(vertical = 16.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
@@ -284,7 +291,8 @@ private fun LoadingMoreErrorView(
     onRetryClicked: () -> Unit,
 ) {
     Row(
-        modifier = modifier.fillMaxWidth()
+        modifier = modifier
+            .fillMaxWidth()
             .padding(vertical = 16.dp),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
