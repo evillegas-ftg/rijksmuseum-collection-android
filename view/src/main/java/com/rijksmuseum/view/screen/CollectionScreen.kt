@@ -1,5 +1,6 @@
 package com.rijksmuseum.view.screen
 
+import androidx.annotation.VisibleForTesting
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
@@ -30,6 +31,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -64,8 +66,9 @@ fun CollectionScreen(
     )
 }
 
+@VisibleForTesting
 @Composable
-private fun CollectionScreenContent(
+fun CollectionScreenContent(
     uiState: CollectionState,
     modifier: Modifier = Modifier,
     onRetryClicked: () -> Unit,
@@ -97,6 +100,8 @@ private fun CollectionScreenContent(
     }
 }
 
+val CollectionListTestTag = "CollectionListTestTag"
+
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
 private fun CollectionListView(
@@ -107,7 +112,7 @@ private fun CollectionListView(
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
-        modifier = modifier.fillMaxSize(),
+        modifier = modifier.fillMaxSize().testTag(CollectionListTestTag),
     ) {
         data.items.forEachIndexed { index, group ->
             if (index > 0) {

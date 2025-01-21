@@ -40,6 +40,7 @@ android {
 
 dependencies {
     implementation(project(":presentation"))
+    testImplementation(libs.junit.jupiter)
 
     ksp(libs.hilt.android.compiler)
     implementation(libs.hilt.android)
@@ -62,5 +63,6 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+    androidTestImplementation(libs.androidx.ui.test.junit4.android)
 
 }
