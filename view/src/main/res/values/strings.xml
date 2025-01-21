@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Rijksmuseum Android</string>
+    <string name="generic_error_title">Something went wrong!</string>
+    <string name="generic_error_retry">Retry</string>
+    <string name="generic_image_not_available">Image is not available</string>
+    <string name="loading_more_content">Loading more content</string>
+    <string name="loading_more_content_error">Something went wrong loading more content</string>
 </resources>

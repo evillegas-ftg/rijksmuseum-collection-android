@@ -6,7 +6,6 @@ import com.rijksmuseum.domain.model.PaginatedArtListModel
 import com.rijksmuseum.domain.usecase.GetCollectionPageUseCase
 import com.rijksmuseum.presentation.mapper.toViewData
 import com.rijksmuseum.presentation.model.ArtCollectionGroupViewData
-import com.rijksmuseum.presentation.model.ArtCollectionItemViewData
 import com.rijksmuseum.presentation.model.PaginatedArtObjectViewData
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -47,6 +46,7 @@ class CollectionViewModel @Inject constructor(
                 current.copy(
                     data = current.data.copy(
                         isLoadingMore = true,
+                        loadingMoreError = null,
                     )
                 )
             }
@@ -72,7 +72,8 @@ class CollectionViewModel @Inject constructor(
                     ),
                     isLoadingMore = false,
                     canLoadMore = newData.hasMoreItems
-                )
+                ),
+                loading = false,
             )
         }
     }
@@ -121,7 +122,7 @@ class CollectionViewModel @Inject constructor(
 }
 
 data class CollectionState(
-    val loading: Boolean = true,
+    val loading: Boolean = false,
     val data: PaginatedArtObjectViewData = PaginatedArtObjectViewData(items = emptyList()),
     val error: String? = null
 ) {

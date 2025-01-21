@@ -68,10 +68,12 @@ object NetworkModule {
     fun provideRetrofitClient(
         @NetworkBaseUrl baseUrl: String,
         @JSONConverter jsonConverter: Converter.Factory,
+        okHttpClient: OkHttpClient,
     ): Retrofit {
         return Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(jsonConverter)
+            .client(okHttpClient)
             .build()
     }
 }
