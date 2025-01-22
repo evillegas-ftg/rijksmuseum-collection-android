@@ -17,7 +17,7 @@ class ArtObjectMapperKtTest {
             principalOrFirstMaker = "Leonardo",
             webImage = WebImageResponse(guid = "Something", url = "http://example.com/image.jpg"),
         )
-        
+
         val expected = ArtObjectListModel(
             id = "MyId-1",
             objectNumber = "Object-Number-2",

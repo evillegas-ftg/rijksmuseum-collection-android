@@ -4,7 +4,7 @@ import com.rijksmuseum.domain.model.PaginatedArtListModel
 import com.rijksmuseum.domain.repository.ArtRepository
 import javax.inject.Inject
 
-class GetCollectionPageUseCase @Inject constructor(
+class GetCollectionPageUseCase @Inject internal constructor(
     private val artRepository: ArtRepository,
 ) {
     suspend fun get(page: Int): Result<PaginatedArtListModel> {

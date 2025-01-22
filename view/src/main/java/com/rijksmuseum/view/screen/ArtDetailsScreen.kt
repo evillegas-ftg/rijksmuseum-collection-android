@@ -47,7 +47,7 @@ import com.rijksmuseum.view.ui.component.ErrorView
 import com.rijksmuseum.view.ui.component.LoaderView
 
 @Composable
-fun ArtDetailsScreen(
+internal fun ArtDetailsScreen(
     onNavigateBack: () -> Unit,
     modifier: Modifier = Modifier,
     viewModel: ArtDetailsViewModel = hiltViewModel(),

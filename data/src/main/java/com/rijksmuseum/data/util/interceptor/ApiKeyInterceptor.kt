@@ -3,7 +3,7 @@ package com.rijksmuseum.data.util.interceptor
 import okhttp3.Interceptor
 import okhttp3.Response
 
-class ApiKeyInterceptor(
+internal class ApiKeyInterceptor(
     private val key: String
 ) : Interceptor {
 

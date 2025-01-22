@@ -4,6 +4,6 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class DatingResponse(
+internal data class DatingResponse(
     @SerialName("presentingDate") val presentingDate: String?,
 )

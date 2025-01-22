@@ -48,9 +48,11 @@ import com.rijksmuseum.presentation.viewmodel.CollectionViewModel
 import com.rijksmuseum.view.R
 import com.rijksmuseum.view.ui.component.ErrorView
 import com.rijksmuseum.view.ui.component.LoaderView
+internal const val CollectionListTestTag = "CollectionListTestTag"
+private val ObjectImageHeight = 80.dp
 
 @Composable
-fun CollectionScreen(
+internal fun CollectionScreen(
     onNavigateToDetails: (String) -> Unit,
     modifier: Modifier = Modifier,
     viewModel: CollectionViewModel = hiltViewModel(),
@@ -68,7 +70,7 @@ fun CollectionScreen(
 
 @VisibleForTesting
 @Composable
-fun CollectionScreenContent(
+internal fun CollectionScreenContent(
     uiState: CollectionState,
     modifier: Modifier = Modifier,
     onRetryClicked: () -> Unit,
@@ -99,8 +101,6 @@ fun CollectionScreenContent(
         }
     }
 }
-
-val CollectionListTestTag = "CollectionListTestTag"
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable

@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ArtDetailsViewModel @Inject constructor(
+class ArtDetailsViewModel @Inject internal constructor(
     savedStateHandle: SavedStateHandle,
     private val getArtDetails: GetArtDetailsUseCase
 ) : ViewModel() {

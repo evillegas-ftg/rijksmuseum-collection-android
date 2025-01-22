@@ -12,7 +12,7 @@ import com.rijksmuseum.view.screen.ArtDetailsScreen
 import com.rijksmuseum.view.screen.CollectionScreen
 
 @Composable
-fun RijksmuseumNavHost(
+internal fun RijksmuseumNavHost(
     modifier: Modifier = Modifier,
     navController: NavHostController = rememberNavController(),
 ) {

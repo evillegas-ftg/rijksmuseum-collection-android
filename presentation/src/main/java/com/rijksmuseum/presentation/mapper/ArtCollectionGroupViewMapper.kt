@@ -4,7 +4,7 @@ import com.rijksmuseum.domain.model.ArtObjectListModel
 import com.rijksmuseum.presentation.model.ArtCollectionGroupViewData
 import com.rijksmuseum.presentation.model.ArtCollectionItemViewData
 
-fun List<ArtObjectListModel>.toViewData(): List<ArtCollectionGroupViewData> {
+internal fun List<ArtObjectListModel>.toViewData(): List<ArtCollectionGroupViewData> {
     if (isEmpty()) return emptyList()
 
     return fold(mutableListOf()) { acc, item ->

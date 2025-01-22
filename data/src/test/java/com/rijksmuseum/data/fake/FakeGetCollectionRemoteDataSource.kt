@@ -4,7 +4,7 @@ import com.rijksmuseum.data.datasource.RemoteDataSource
 import com.rijksmuseum.data.model.response.CollectionDetailResponse
 import com.rijksmuseum.data.model.response.CollectionResponse
 
-class FakeGetCollectionRemoteDataSource(
+internal class FakeGetCollectionRemoteDataSource(
     private val expectedResponse: CollectionResponse
 ) : RemoteDataSource {
     override suspend fun getCollection(sort: String, page: Int, pageSize: Int): CollectionResponse {

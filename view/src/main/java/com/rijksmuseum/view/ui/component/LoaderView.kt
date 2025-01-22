@@ -8,10 +8,10 @@ import androidx.compose.ui.BiasAlignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 
-const val LoaderViewTestTag = "LoaderViewTestTag"
+internal const val LoaderViewTestTag = "LoaderViewTestTag"
 
 @Composable
-fun LoaderView(
+internal fun LoaderView(
     modifier: Modifier = Modifier,
 ) {
     Box(

@@ -7,7 +7,7 @@ import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
 
-interface RemoteDataSource {
+internal interface RemoteDataSource {
 
     companion object {
         private const val COLLECTION_DEFAULT_SORT = "artist"

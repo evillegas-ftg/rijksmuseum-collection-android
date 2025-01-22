@@ -9,7 +9,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import kotlin.math.min
 
-class ArtRepositoryImpl(
+internal class ArtRepositoryImpl(
     private val remoteDataSource: RemoteDataSource,
 ) : ArtRepository {
 

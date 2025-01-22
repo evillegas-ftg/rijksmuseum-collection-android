@@ -17,10 +17,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import com.rijksmuseum.view.R
 
-const val ErrorViewMessageTestTag = "ErrorViewMessageTestTag"
+internal const val ErrorViewMessageTestTag = "ErrorViewMessageTestTag"
 
 @Composable
-fun ErrorView(
+internal fun ErrorView(
     modifier: Modifier = Modifier,
     reason: String,
     onRetryClicked: () -> Unit,

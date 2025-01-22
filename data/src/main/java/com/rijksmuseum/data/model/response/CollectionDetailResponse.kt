@@ -4,12 +4,12 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-data class CollectionDetailResponse(
+internal data class CollectionDetailResponse(
     @SerialName("artObject") val artObject: ArtDetailObjectResponse
 )
 
 @Serializable
-data class ArtDetailObjectResponse(
+internal data class ArtDetailObjectResponse(
     @SerialName("id") val id: String,
     @SerialName("objectNumber") val objectNumber: String,
     @SerialName("title") val title: String,

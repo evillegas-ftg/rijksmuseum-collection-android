@@ -15,7 +15,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class CollectionViewModel @Inject constructor(
+class CollectionViewModel @Inject internal constructor(
     private val getCollectionPage: GetCollectionPageUseCase,
 ) : ViewModel() {
 
