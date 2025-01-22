@@ -10,16 +10,20 @@ import androidx.compose.ui.platform.testTag
 
 internal const val LoaderViewTestTag = "LoaderViewTestTag"
 
+private const val HorizontalAlignment = 0f
+private const val VerticalAlignment = -0.7f // 30% from top
+
 @Composable
 internal fun LoaderView(
     modifier: Modifier = Modifier,
 ) {
     Box(
-        modifier = modifier.fillMaxSize()
+        modifier = modifier
+            .fillMaxSize()
             .testTag(LoaderViewTestTag),
         contentAlignment = BiasAlignment(
-            horizontalBias = 0f,
-            verticalBias = -0.7f
+            horizontalBias = HorizontalAlignment,
+            verticalBias = VerticalAlignment,
         )
     ) {
         CircularProgressIndicator()

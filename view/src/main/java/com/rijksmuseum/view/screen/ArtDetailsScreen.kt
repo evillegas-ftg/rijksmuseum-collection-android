@@ -32,7 +32,6 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import coil.compose.AsyncImagePainter
@@ -45,6 +44,7 @@ import com.rijksmuseum.presentation.viewmodel.ArtDetailsViewModel
 import com.rijksmuseum.view.R
 import com.rijksmuseum.view.ui.component.ErrorView
 import com.rijksmuseum.view.ui.component.LoaderView
+import com.rijksmuseum.view.ui.theme.Spacing
 
 @Composable
 internal fun ArtDetailsScreen(
@@ -118,15 +118,15 @@ private fun ArtDetailsView(
             modifier = Modifier.fillMaxWidth(),
             image = data.image,
         )
-        Spacer(modifier = Modifier.height(16.dp))
+        Spacer(modifier = Modifier.height(Spacing.medium))
         Column(
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(horizontal = 16.dp)
+                .padding(horizontal = Spacing.medium)
         ) {
             if (data.location != null) {
                 ArtLocationView(location = data.location.orEmpty())
-                Spacer(modifier = Modifier.height(4.dp))
+                Spacer(modifier = Modifier.height(Spacing.extraSmall))
             }
             Text(
                 text = data.title,
@@ -139,7 +139,7 @@ private fun ArtDetailsView(
                 color = MaterialTheme.colorScheme.secondary,
             )
             if (data.dating != null) {
-                Spacer(modifier = Modifier.height(4.dp))
+                Spacer(modifier = Modifier.height(Spacing.extraSmall))
                 Text(
                     text = stringResource(R.string.art_details_dating, data.dating.orEmpty()),
                     style = MaterialTheme.typography.bodyMedium,
@@ -148,7 +148,7 @@ private fun ArtDetailsView(
             }
 
             if (data.description != null) {
-                Spacer(modifier = Modifier.height(4.dp))
+                Spacer(modifier = Modifier.height(Spacing.large))
                 Text(
                     text = data.description.orEmpty(),
                     style = MaterialTheme.typography.bodyMedium,
@@ -179,7 +179,7 @@ private fun ArtImageView(
                     modifier = Modifier
                         .fillMaxSize()
                         .background(color = MaterialTheme.colorScheme.error.copy(alpha = 0.1f))
-                        .padding(8.dp),
+                        .padding(Spacing.small),
                     contentAlignment = Alignment.Center,
                 ) {
                     Text(
@@ -198,7 +198,7 @@ private fun ArtImageView(
                         .fillMaxSize(),
                     contentAlignment = Alignment.Center,
                 ) {
-                    CircularProgressIndicator(modifier = Modifier.size(48.dp))
+                    CircularProgressIndicator(modifier = Modifier.size(Spacing.extraLarge))
                 }
             }
 
@@ -219,13 +219,13 @@ private fun ArtLocationView(
     Row(
         modifier = modifier
             .background(
-                color = MaterialTheme.colorScheme.primary.copy(
-                    alpha = 0.3f
-                ),
+                color = MaterialTheme.colorScheme.primary
+                    .copy(alpha = 0.3f),
                 shape = MaterialTheme.shapes.medium
             )
-            .padding(8.dp),
-        horizontalArrangement = Arrangement.spacedBy(4.dp),
+            .padding(Spacing.small),
+        horizontalArrangement = Arrangement.spacedBy(Spacing.extraSmall),
+        verticalAlignment = Alignment.CenterVertically,
     ) {
         Icon(
             imageVector = Icons.Default.LocationOn,

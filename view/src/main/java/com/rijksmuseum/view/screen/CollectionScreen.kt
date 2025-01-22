@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
@@ -48,6 +47,8 @@ import com.rijksmuseum.presentation.viewmodel.CollectionViewModel
 import com.rijksmuseum.view.R
 import com.rijksmuseum.view.ui.component.ErrorView
 import com.rijksmuseum.view.ui.component.LoaderView
+import com.rijksmuseum.view.ui.theme.Spacing
+
 internal const val CollectionListTestTag = "CollectionListTestTag"
 private val ObjectImageHeight = 80.dp
 
@@ -112,29 +113,31 @@ private fun CollectionListView(
     modifier: Modifier = Modifier,
 ) {
     LazyColumn(
-        modifier = modifier.fillMaxSize().testTag(CollectionListTestTag),
+        modifier = modifier
+            .fillMaxSize()
+            .testTag(CollectionListTestTag),
     ) {
         data.items.forEachIndexed { index, group ->
             if (index > 0) {
-                item { Spacer(modifier = Modifier.height(24.dp)) }
+                item { Spacer(modifier = Modifier.height(Spacing.large)) }
             }
 
             stickyHeader {
                 ArtistHeaderView(
-                    modifier = Modifier.padding(horizontal = 16.dp),
+                    modifier = Modifier.padding(horizontal = Spacing.medium),
                     title = group.artist
                 )
             }
 
             items(group.items, key = { item -> item.id }) { item ->
                 ArtistObjectView(
-                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 4.dp),
+                    modifier = Modifier.padding(horizontal = Spacing.medium, vertical = Spacing.extraSmall),
                     data = item,
                     onClick = onArtClicked,
                 )
             }
 
-            // To do the infinity scroll effect, just 3 items before the end start loading the next page
+            // To do the infinity scroll effect, just 2 items before the end start loading the next page
             if (data.canLoadMore && index < data.items.size - 2) {
                 item {
                     LaunchedEffect(Unit) {
@@ -145,12 +148,13 @@ private fun CollectionListView(
         }
 
         if (data.isLoadingMore) {
-            item { LoadingMoreContentView(modifier = Modifier.padding(horizontal = 16.dp)) }
+            item { LoadingMoreContentView(modifier = Modifier.padding(horizontal = Spacing.medium)) }
         }
+
         if (data.loadingMoreError != null) {
             item {
                 LoadingMoreErrorView(
-                    modifier = Modifier.padding(horizontal = 16.dp),
+                    modifier = Modifier.padding(horizontal = Spacing.medium),
                     onRetryClicked = onRetryClicked,
                 )
             }
@@ -166,9 +170,9 @@ private fun ArtistHeaderView(
     Row(
         modifier = modifier
             .background(color = MaterialTheme.colorScheme.background)
-            .padding(16.dp)
+            .padding(Spacing.medium)
             .fillMaxWidth(),
-        horizontalArrangement = Arrangement.spacedBy(16.dp),
+        horizontalArrangement = Arrangement.spacedBy(Spacing.medium),
         verticalAlignment = Alignment.CenterVertically
     ) {
         Icon(
@@ -195,7 +199,7 @@ private fun ArtistObjectView(
         ObjectImageView(
             modifier = Modifier
                 .fillMaxWidth()
-                .height(80.dp),
+                .height(ObjectImageHeight),
             image = data.image
         )
         Column(
@@ -238,7 +242,7 @@ private fun ObjectImageView(
                     modifier = Modifier
                         .fillMaxSize()
                         .background(color = MaterialTheme.colorScheme.error.copy(alpha = 0.1f))
-                        .padding(8.dp),
+                        .padding(Spacing.small),
                     contentAlignment = Alignment.Center,
                 ) {
                     Text(
@@ -257,7 +261,7 @@ private fun ObjectImageView(
                         .fillMaxSize(),
                     contentAlignment = Alignment.Center,
                 ) {
-                    CircularProgressIndicator(modifier = Modifier.size(48.dp))
+                    CircularProgressIndicator(modifier = Modifier.size(Spacing.extraLarge))
                 }
             }
 
@@ -277,12 +281,11 @@ private fun LoadingMoreContentView(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(vertical = 16.dp),
+            .padding(vertical = Spacing.medium),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center
+        horizontalArrangement = Arrangement.spacedBy(Spacing.extraSmall)
     ) {
-        CircularProgressIndicator(modifier = Modifier.size(24.dp))
-        Spacer(modifier = Modifier.width(4.dp))
+        CircularProgressIndicator(modifier = Modifier.size(Spacing.large))
         Text(
             text = stringResource(R.string.loading_more_content),
             style = MaterialTheme.typography.bodyMedium,
@@ -298,19 +301,17 @@ private fun LoadingMoreErrorView(
     Row(
         modifier = modifier
             .fillMaxWidth()
-            .padding(vertical = 16.dp),
+            .padding(vertical = Spacing.medium),
         verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.Center
+        horizontalArrangement = Arrangement.spacedBy(Spacing.extraSmall)
     ) {
         Text(
             modifier = Modifier.weight(1f),
             text = stringResource(R.string.loading_more_content_error),
             style = MaterialTheme.typography.bodySmall,
         )
-        Spacer(modifier = Modifier.width(4.dp))
         TextButton(onClick = onRetryClicked) {
             Text(text = stringResource(R.string.generic_error_retry))
         }
-
     }
 }
