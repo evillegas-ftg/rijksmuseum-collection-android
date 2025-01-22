@@ -116,17 +116,7 @@ class ArtDetailsViewModelTest {
 
     @Test
     fun `when retry is clicked then data is fetched`() = runTest {
-        val initialDetailModel = ArtDetailModel(
-            id = "adipisci",
-            objectNumber = "graeco",
-            title = "ornare",
-            maker = "repudiare",
-            image = null,
-            location = null,
-            dating = null,
-            description = null
-        )
-        val result = Result.success(initialDetailModel)
+        val result = Result.failure<ArtDetailModel>(Exception("No internet"))
         coEvery { getArtDetailsUseCase.get(eq("defaultId")) } returns result
         val viewModel = ArtDetailsViewModel(
             savedStateHandle = SavedStateHandle(mapOf("id" to "defaultId")),

@@ -23,7 +23,7 @@ class CollectionViewModelTest {
     @get:Rule
     val mainDispatcherRule = MainDispatcherRule()
 
-    private  val getCollectionPageUseCase = mockk<GetCollectionPageUseCase>(relaxed = true)
+    private val getCollectionPageUseCase = mockk<GetCollectionPageUseCase>(relaxed = true)
 
     @Test
     fun `when initialised then first page is fetched`() = runTest {
@@ -195,15 +195,15 @@ class CollectionViewModelTest {
         )
         assertEquals(expectedShowingInitialPage, stateUpdates[1])
         val expectedLoadingNextPage = CollectionState(
-                loading = false,
-                data = PaginatedArtObjectViewData(
-                    isLoadingMore = true,
-                    canLoadMore = true,
-                    items = emptyList(),
-                    loadingMoreError = null,
-                ),
-                error = null
-            )
+            loading = false,
+            data = PaginatedArtObjectViewData(
+                isLoadingMore = true,
+                canLoadMore = true,
+                items = emptyList(),
+                loadingMoreError = null,
+            ),
+            error = null
+        )
         assertEquals(expectedLoadingNextPage, stateUpdates[2])
         val expectedShowingNextPage = CollectionState(
             loading = false,
