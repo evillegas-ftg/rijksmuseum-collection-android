@@ -19,10 +19,14 @@ class CollectionViewModel @Inject internal constructor(
     private val getCollectionPage: GetCollectionPageUseCase,
 ) : ViewModel() {
 
+    companion object {
+        private const val FIRST_PAGE = 1
+    }
+
     private val _uiState = MutableStateFlow(CollectionState())
     val uiState = _uiState.asStateFlow()
 
-    private var nextPage: Int = 0
+    private var nextPage: Int = FIRST_PAGE
 
     init {
         loadNextPage()
@@ -40,7 +44,7 @@ class CollectionViewModel @Inject internal constructor(
         if (!_uiState.value.canLoad) return
 
         _uiState.update { current ->
-            if (nextPage == 0) {
+            if (nextPage == FIRST_PAGE) {
                 CollectionState(loading = true)
             } else {
                 current.copy(
@@ -80,7 +84,7 @@ class CollectionViewModel @Inject internal constructor(
 
     private fun onPageLoadFailure(error: Throwable) {
         _uiState.update { current ->
-            if (nextPage == 0) {
+            if (nextPage == FIRST_PAGE) {
                 current.copy(
                     loading = false,
                     error = error.message.orEmpty(),

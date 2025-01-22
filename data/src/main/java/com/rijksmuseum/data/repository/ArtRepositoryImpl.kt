@@ -30,10 +30,7 @@ internal class ArtRepositoryImpl(
                 Result.success(
                     PaginatedArtListModel(
                         items = pageContent.artObjects.map { it.toDomain() },
-                        hasMoreItems = (page.inc() * COLLECTION_DEFAULT_PAGE_SIZE < min(
-                            COLLECTION_MAX_ITEMS,
-                            pageContent.count
-                        )),
+                        hasMoreItems = (page * COLLECTION_DEFAULT_PAGE_SIZE < min(COLLECTION_MAX_ITEMS, pageContent.count)),
                         nextPageIndex = page.inc(),
                     )
                 )

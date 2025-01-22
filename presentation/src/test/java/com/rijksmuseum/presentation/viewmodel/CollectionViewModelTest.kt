@@ -34,7 +34,7 @@ class CollectionViewModelTest {
                 nextPageIndex = 1,
             )
         )
-        coEvery { getCollectionPageUseCase.get(eq(0)) } returns firstPageResult
+        coEvery { getCollectionPageUseCase.get(eq(1)) } returns firstPageResult
 
         CollectionViewModel(
             getCollectionPage = getCollectionPageUseCase
@@ -42,7 +42,7 @@ class CollectionViewModelTest {
 
         advanceUntilIdle()
 
-        coVerify { getCollectionPageUseCase.get(eq(0)) }
+        coVerify { getCollectionPageUseCase.get(eq(1)) }
     }
 
     @Test
@@ -51,28 +51,28 @@ class CollectionViewModelTest {
             PaginatedArtListModel(
                 items = emptyList(),
                 hasMoreItems = true,
-                nextPageIndex = 1,
+                nextPageIndex = 2,
             )
         )
         val secondPageResult = Result.success(
             PaginatedArtListModel(
                 items = emptyList(),
                 hasMoreItems = false,
-                nextPageIndex = 2,
+                nextPageIndex = 3,
             )
         )
-        coEvery { getCollectionPageUseCase.get(eq(0)) } returns firstPageResult
-        coEvery { getCollectionPageUseCase.get(eq(1)) } returns secondPageResult
+        coEvery { getCollectionPageUseCase.get(eq(1)) } returns firstPageResult
+        coEvery { getCollectionPageUseCase.get(eq(2)) } returns secondPageResult
 
         val viewModel = CollectionViewModel(
             getCollectionPage = getCollectionPageUseCase
         )
 
         advanceUntilIdle()
-        coVerify { getCollectionPageUseCase.get(eq(0)) }
+        coVerify { getCollectionPageUseCase.get(eq(1)) }
         viewModel.onMoreItemsRequested()
         advanceUntilIdle()
-        coVerify { getCollectionPageUseCase.get(eq(1)) }
+        coVerify { getCollectionPageUseCase.get(eq(2)) }
     }
 
     @Test
@@ -80,7 +80,7 @@ class CollectionViewModelTest {
         val firstPageResult = Result.failure<PaginatedArtListModel>(
             Exception("No internet")
         )
-        coEvery { getCollectionPageUseCase.get(eq(0)) } returns firstPageResult
+        coEvery { getCollectionPageUseCase.get(eq(1)) } returns firstPageResult
 
         val viewModel = CollectionViewModel(
             getCollectionPage = getCollectionPageUseCase
@@ -90,7 +90,7 @@ class CollectionViewModelTest {
         viewModel.onRetryClicked()
         advanceUntilIdle()
 
-        coVerify(exactly = 2) { getCollectionPageUseCase.get(eq(0)) }
+        coVerify(exactly = 2) { getCollectionPageUseCase.get(eq(1)) }
     }
 
     @Test
@@ -99,10 +99,10 @@ class CollectionViewModelTest {
             PaginatedArtListModel(
                 items = emptyList(),
                 hasMoreItems = true,
-                nextPageIndex = 1,
+                nextPageIndex = 2,
             )
         )
-        coEvery { getCollectionPageUseCase.get(eq(0)) } returns firstPageResult
+        coEvery { getCollectionPageUseCase.get(eq(1)) } returns firstPageResult
 
         val viewModel = CollectionViewModel(
             getCollectionPage = getCollectionPageUseCase
@@ -145,18 +145,18 @@ class CollectionViewModelTest {
             PaginatedArtListModel(
                 items = emptyList(),
                 hasMoreItems = true,
-                nextPageIndex = 1,
+                nextPageIndex = 2,
             )
         )
         val secondPageResult = Result.success(
             PaginatedArtListModel(
                 items = emptyList(),
                 hasMoreItems = false,
-                nextPageIndex = 2,
+                nextPageIndex = 3,
             )
         )
-        coEvery { getCollectionPageUseCase.get(eq(0)) } returns firstPageResult
-        coEvery { getCollectionPageUseCase.get(eq(1)) } returns secondPageResult
+        coEvery { getCollectionPageUseCase.get(eq(1)) } returns firstPageResult
+        coEvery { getCollectionPageUseCase.get(eq(2)) } returns secondPageResult
 
         val viewModel = CollectionViewModel(
             getCollectionPage = getCollectionPageUseCase

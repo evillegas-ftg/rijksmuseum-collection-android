@@ -38,7 +38,7 @@ class ArtRepositoryImplTest {
             remoteDataSource = ErrorFakeRemoteDataSource(expected)
         )
 
-        val result = repository.getCollection(0)
+        val result = repository.getCollection(1)
 
         assertEquals(true, result.isFailure)
         assertEquals(expected, result.exceptionOrNull())
@@ -66,7 +66,7 @@ class ArtRepositoryImplTest {
             ),
         )
         val repository = ArtRepositoryImpl(remoteDataSource = FakeGetCollectionRemoteDataSource(response))
-        val result = repository.getCollection(0)
+        val result = repository.getCollection(1)
 
         assertEquals(true, result.isSuccess)
 
@@ -88,7 +88,7 @@ class ArtRepositoryImplTest {
                 ),
             ),
             hasMoreItems = true,
-            nextPageIndex = 1,
+            nextPageIndex = 2,
         )
 
         assertEquals(expectedModel, result.getOrNull())
@@ -116,7 +116,7 @@ class ArtRepositoryImplTest {
             ),
         )
         val repository = ArtRepositoryImpl(remoteDataSource = FakeGetCollectionRemoteDataSource(response))
-        val result = repository.getCollection(0)
+        val result = repository.getCollection(1)
 
         assertEquals(true, result.isSuccess)
 
@@ -138,7 +138,7 @@ class ArtRepositoryImplTest {
                 ),
             ),
             hasMoreItems = false,
-            nextPageIndex = 1,
+            nextPageIndex = 2,
         )
 
         assertEquals(expectedModel, result.getOrNull())

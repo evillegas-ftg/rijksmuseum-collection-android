@@ -16,7 +16,7 @@ internal interface RemoteDataSource {
     @GET("collection")
     suspend fun getCollection(
         @Query("s") sort: String = COLLECTION_DEFAULT_SORT,
-        @Query("p") @IntRange(from = 0) page: Int,
+        @Query("p") @IntRange(from = 1) page: Int,
         @Query("ps") @IntRange(from = 1, to = 100) pageSize: Int,
     ): CollectionResponse
 
